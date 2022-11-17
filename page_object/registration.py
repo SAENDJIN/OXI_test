@@ -1,4 +1,5 @@
 from playwright.sync_api import Playwright
+from usefull_tool.email_generator import random_email
 
 
 class RegistrationDeposit:
@@ -15,7 +16,7 @@ class RegistrationDeposit:
         """Fill registration inputs"""
         self.page.get_by_role("button", name="Registrieren").click()
         self.page.get_by_placeholder("E-Mail").click()
-        self.page.get_by_placeholder("E-Mail").fill("andrii.qa31+test.de.auto@gmail.com")
+        self.page.get_by_placeholder("E-Mail").fill(random_email)
         self.page.get_by_placeholder("Passwort").click()
         self.page.get_by_placeholder("Passwort").fill("ilimem31")
         self.page.locator(

@@ -30,7 +30,8 @@ class LoginDeposit:
 
     def choose_payment_method(self):
         """Choose payment method"""
-        # add
+        # test with this code (maybe should codegen)
+        
 
     def check_new_window(self):
         """Assertion new window and information in it"""

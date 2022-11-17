@@ -31,13 +31,13 @@ class LoginDeposit:
     def choose_payment_method(self):
         """Choose payment method"""
         # test with this code (maybe should codegen)
-        
 
     def check_new_window(self):
         """Assertion new window and information in it"""
         # add
+        return
 
     def close(self):
-        """Close browser and end autotest"""
+        """End of test"""
         self.context.close()
         self.browser.close()

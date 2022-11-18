@@ -1,5 +1,6 @@
 from playwright.sync_api import Playwright
 from usefull_tool.email_generator import random_email
+from usefull_tool.new_phone_generator import random_phone
 
 
 class RegistrationDeposit:
@@ -16,7 +17,8 @@ class RegistrationDeposit:
         """Fill registration inputs"""
         self.page.get_by_role("button", name="Registrieren").click()
         self.page.get_by_placeholder("E-Mail").click()
-        self.page.get_by_placeholder("E-Mail").fill(random_email)
+        self.page.get_by_placeholder("E-Mail").fill(random_email)  # Generate random email every time (PASS)
+        # it depends on what we choose json or list. Add append to it
         self.page.get_by_placeholder("Passwort").click()
         self.page.get_by_placeholder("Passwort").fill("ilimem31")
         self.page.locator(
@@ -34,19 +36,20 @@ class RegistrationDeposit:
     def profile_info_fill(self):
         """Fill user profile info"""
         self.page.get_by_placeholder("Telefonnummer").click()
-        self.page.get_by_placeholder("Telefonnummer").fill("+4 (930) 674-06-06 65")  # Generate new phone every time
+        self.page.get_by_placeholder("Telefonnummer").fill(random_phone)  # Generate new phone every time (PASS)
         self.page.get_by_role("textbox", name="Name incorrect_field").click()  # unknown step (maybe delete)
         self.page.get_by_role("textbox", name="Name incorrect_field").fill("FirstName")
         self.page.get_by_placeholder("Nachname").click()
         self.page.get_by_placeholder("Nachname").fill("LastName")
         self.page.get_by_placeholder("Geburtsdatum").click()  # Birthday Date
-        self.page.get_by_placeholder("Geburtsdatum").fill("12.12.1995")
+        self.page.get_by_placeholder("Geburtsdatum").fill("12.12.1995")  # Generate random birthday date!!!
         self.page.get_by_placeholder("Stadt").click()
-        self.page.get_by_placeholder("Stadt").fill("Leun")  # City
-        self.page.get_by_placeholder("Adresse").click()  # Address
+        self.page.get_by_placeholder("Stadt").fill("Leun")  # City  (maybe crate list with city and take randomly)
+        self.page.get_by_placeholder("Adresse").click()  # Address (maybe crate list with address and take randomly)
         self.page.get_by_placeholder("Adresse").fill(
             "Wetzlarer Strasse 77")  # maybe random number at the end every time
         self.page.get_by_placeholder("Postleitzahl").click()  # Postal code
+        # (maybe crate list with postal code and take randomly)
         self.page.get_by_placeholder("Postleitzahl").fill("35638")
         self.page.get_by_label("Männlich").check()
 
@@ -58,6 +61,7 @@ class RegistrationDeposit:
         page1 = popup_info.value
         self.page.wait_for_url("https://onetouch.astropay.com/deposit/SchTD7fCeOpIG2yyfooazEXRX7M5lksI5r2iWZge")
         page1.goto("https://onetouch.astropay.com/deposit/checkout/SchTD7fCeOpIG2yyfooazEXRX7M5lksI5r2iWZge")
+        # maybe problem here
 
     def check_new_window(self):
         """Check result of test"""

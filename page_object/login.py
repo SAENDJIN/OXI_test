@@ -31,6 +31,9 @@ class LoginDeposit:
     def choose_payment_method(self):
         """Choose payment method"""
         # test with this code (maybe should codegen)
+        self.page.locator(".paymentList__img").first.click()
+        self.page.get_by_role("button", name="€ 30.00").click()
+        self.page.get_by_role("button", name="Einzahlen").click()
 
     def check_new_window(self):
         """Assertion new window and information in it"""

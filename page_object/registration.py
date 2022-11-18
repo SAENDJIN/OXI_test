@@ -61,6 +61,7 @@ class RegistrationDeposit:
         page1 = popup_info.value
         self.page.wait_for_url("https://onetouch.astropay.com/deposit/SchTD7fCeOpIG2yyfooazEXRX7M5lksI5r2iWZge")
         page1.goto("https://onetouch.astropay.com/deposit/checkout/SchTD7fCeOpIG2yyfooazEXRX7M5lksI5r2iWZge")
+        # maybe problem here
 
     def check_new_window(self):
         """Check result of test"""

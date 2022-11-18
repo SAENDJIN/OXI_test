@@ -1,7 +1,7 @@
 from playwright.sync_api import Playwright
 from usefull_tool.email_generator import random_email
 from usefull_tool.new_phone_generator import random_phone
-
+from usefull_tool.birtday_generator import random_date
 
 class RegistrationDeposit:
     """Test user flow registration -> fill user info -> deposit -> open new page with any deposit method"""
@@ -42,7 +42,7 @@ class RegistrationDeposit:
         self.page.get_by_placeholder("Nachname").click()
         self.page.get_by_placeholder("Nachname").fill("LastName")
         self.page.get_by_placeholder("Geburtsdatum").click()  # Birthday Date
-        self.page.get_by_placeholder("Geburtsdatum").fill("12.12.1995")  # Generate random birthday date!!!
+        self.page.get_by_placeholder("Geburtsdatum").fill(random_date)  # Generate random birthday date (DONE)
         self.page.get_by_placeholder("Stadt").click()
         self.page.get_by_placeholder("Stadt").fill("Leun")  # City  (maybe crate list with city and take randomly)
         self.page.get_by_placeholder("Adresse").click()  # Address (maybe crate list with address and take randomly)

@@ -1,6 +1,6 @@
 from playwright.sync_api import Playwright
 from usefull_tool.email_generator import random_email
-from usefull_tool.new_phone_generator import random_phone
+from usefull_tool.new_phone_generator import random_phone,  random_number_two
 from usefull_tool.birtday_generator import random_date
 
 class RegistrationDeposit:
@@ -47,7 +47,7 @@ class RegistrationDeposit:
         self.page.get_by_placeholder("Stadt").fill("Leun")  # City  (maybe crate list with city and take randomly)
         self.page.get_by_placeholder("Adresse").click()  # Address (maybe crate list with address and take randomly)
         self.page.get_by_placeholder("Adresse").fill(
-            "Wetzlarer Strasse 77")  # maybe random number at the end every time
+            "Wetzlarer Strasse " + str(random_number_two))  # maybe random number at the end every time DONE
         self.page.get_by_placeholder("Postleitzahl").click()  # Postal code
         # (maybe crate list with postal code and take randomly)
         self.page.get_by_placeholder("Postleitzahl").fill("35638")

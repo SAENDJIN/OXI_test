@@ -1,5 +1,6 @@
 from playwright.sync_api import Playwright
 from usefull_tool.email_generator import random_email
+from usefull_tool.new_phone_generator import random_phone
 
 
 class RegistrationDeposit:
@@ -34,7 +35,7 @@ class RegistrationDeposit:
     def profile_info_fill(self):
         """Fill user profile info"""
         self.page.get_by_placeholder("Telefonnummer").click()
-        self.page.get_by_placeholder("Telefonnummer").fill("+4 (930) 674-06-06 65")  # Generate new phone every time
+        self.page.get_by_placeholder("Telefonnummer").fill(random_phone)  # Generate new phone every time (PASS
         self.page.get_by_role("textbox", name="Name incorrect_field").click()  # unknown step (maybe delete)
         self.page.get_by_role("textbox", name="Name incorrect_field").fill("FirstName")
         self.page.get_by_placeholder("Nachname").click()

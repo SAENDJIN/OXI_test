@@ -1,7 +1,8 @@
 from playwright.sync_api import Playwright
 from usefull_tool.email_generator import random_email
-from usefull_tool.new_phone_generator import random_phone,  random_number_two
+from usefull_tool.new_phone_generator import random_phone, random_number_two
 from usefull_tool.birtday_generator import random_date
+
 
 class RegistrationDeposit:
     """Test user flow registration -> fill user info -> deposit -> open new page with any deposit method"""

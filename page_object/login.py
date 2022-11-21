@@ -1,5 +1,4 @@
 from playwright.sync_api import Playwright
-import time
 
 
 class LoginDeposit:
@@ -15,10 +14,8 @@ class LoginDeposit:
     def login_form(self):
         """Fill login inputs"""
         self.page.get_by_role("button", name="Einloggen").click()
-        self.page.get_by_placeholder("Benutzername").click()
         self.page.get_by_placeholder("Benutzername").fill(
             "andrii.qa31+autotest.de@gmail.com")  # Solve what email to use
-        self.page.get_by_placeholder("Passwort").click()
         self.page.get_by_placeholder("Passwort").fill("ilimem31")
 
     def go_to_deposit(self):
@@ -31,25 +28,19 @@ class LoginDeposit:
 
     def choose_payment_method(self):
         """Choose payment method"""
-        # test with this code (maybe should codegen)
-        self.page.locator(".paymentList__img").first.click()
-        self.page.get_by_role("button", name="€ 30.00").click()
-        # self.page.get_by_role("button", name="Einzahlen").click()
-
-    def check_new_window(self):
-        """Assertion new window is opened"""
+        self.page.locator("li:nth-child(18) > .paymentList__img").click()
         with self.page.expect_popup() as popup_info:
             self.page.get_by_role("button", name="Einzahlen").click()
         page1 = popup_info.value
-        time.sleep(2)
-        current_url = page1.url(timeout= )
-        self.page.wait_for_url(current_url)
-        page1.goto(current_url)
+        page1.close()
 
-        return
+    def check_new_window(self):
+        """Assertion new window is opened"""
+        text_header_popup = self.page.locator("//html/body/div[4]/div[1]/div/div/div/div/div/h2").text_content()
+        return "Warten auf die Zahlung" in text_header_popup
 
     def close(self):
         """End of test"""
-        time.sleep(5)
         self.context.close()
         self.browser.close()
+

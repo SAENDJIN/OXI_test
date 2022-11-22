@@ -20,9 +20,8 @@ class LoginDeposit:
 
     def go_to_deposit(self):
         """Redirect to page with deposit methods"""
-        self.page.locator(
-            "form:has-text(\"Benutzername popup_login.field_incorrect Passwort popup_login.field_incorrect Pa\")") \
-            .get_by_role("button", name="Einloggen").click()
+        self.page.locator("div[role=\"dialog\"] button:has-text(\"Einloggen\")").click()
+
         self.page.get_by_role("button", name="€ 0 Einzahlung").click()
         self.page.wait_for_url("https://oxicasino.io/de/wallet/deposit")
 

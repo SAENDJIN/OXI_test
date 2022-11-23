@@ -13,23 +13,23 @@ class LoginDeposit:
 
     def login_form(self):
         """Fill login inputs"""
-        self.page.get_by_role("button", name="Einloggen").click()
-        self.page.get_by_placeholder("Benutzername").fill(
-            "andrii.qa31+autotest.de@gmail.com")  # Solve what email to use
-        self.page.get_by_placeholder("Passwort").fill("ilimem31")
+        self.page.locator("button:has-text(\"Einloggen\")").first.click()
+        self.page.locator("[placeholder=\"Benutzername\"]").fill("andrii.qa31+autotest.de@gmail.com")
+        self.page.locator("[placeholder=\"Passwort\"]").fill("ilimem31")
 
     def go_to_deposit(self):
         """Redirect to page with deposit methods"""
         self.page.locator("div[role=\"dialog\"] button:has-text(\"Einloggen\")").click()
 
-        self.page.get_by_role("button", name="€ 0 Einzahlung").click()
+        self.page.locator("text=€ 0Einzahlung").click()
         self.page.wait_for_url("https://oxicasino.io/de/wallet/deposit")
 
     def choose_payment_method(self):
         """Choose payment method"""
-        self.page.locator("li:nth-child(18) > .paymentList__img").click()
+        self.page.locator(".paymentList__img").first.click()
+        self.page.locator("text=€ 50.00").click()
         with self.page.expect_popup() as popup_info:
-            self.page.get_by_role("button", name="Einzahlen").click()
+            self.locator('//html/body/div[1]/div/div[1]/main/div/div[2]/div[2]/form/div[2]/button').click()
         page1 = popup_info.value
         page1.close()
 

@@ -13,34 +13,33 @@ class LoginDeposit:
 
     def login_form(self):
         """Fill login inputs"""
-        self.page.get_by_role("button", name="Einloggen").click()
-        self.page.get_by_placeholder("Benutzername").click()
-        self.page.get_by_placeholder("Benutzername").fill(
-            "andrii.qa31+autotest.de@gmail.com")  # Solve what email to use
-        self.page.get_by_placeholder("Passwort").click()
-        self.page.get_by_placeholder("Passwort").fill("ilimem31")
+        self.page.locator("button:has-text(\"Einloggen\")").first.click()
+        self.page.locator("[placeholder=\"Benutzername\"]").fill("andrii.qa31+autotest.de@gmail.com")
+        self.page.locator("[placeholder=\"Passwort\"]").fill("ilimem31")
 
     def go_to_deposit(self):
         """Redirect to page with deposit methods"""
-        self.page.locator(
-            "form:has-text(\"Benutzername popup_login.field_incorrect Passwort popup_login.field_incorrect Pa\")") \
-            .get_by_role("button", name="Einloggen").click()
-        self.page.get_by_role("button", name="€ 0 Einzahlung").click()
+        self.page.locator("div[role=\"dialog\"] button:has-text(\"Einloggen\")").click()
+
+        self.page.locator("text=€ 0Einzahlung").click()
         self.page.wait_for_url("https://oxicasino.io/de/wallet/deposit")
 
     def choose_payment_method(self):
         """Choose payment method"""
-        # test with this code (maybe should codegen)
         self.page.locator(".paymentList__img").first.click()
-        self.page.get_by_role("button", name="€ 30.00").click()
-        self.page.get_by_role("button", name="Einzahlen").click()
+        self.page.locator("text=€ 50.00").click()
+        with self.page.expect_popup() as popup_info:
+            self.locator('//html/body/div[1]/div/div[1]/main/div/div[2]/div[2]/form/div[2]/button').click()
+        page1 = popup_info.value
+        page1.close()
 
     def check_new_window(self):
-        """Assertion new window and information in it"""
-        # add
-        return
+        """Assertion new window is opened"""
+        text_header_popup = self.page.locator("//html/body/div[4]/div[1]/div/div/div/div/div/h2").text_content()
+        return "Warten auf die Zahlung" in text_header_popup
 
     def close(self):
         """End of test"""
         self.context.close()
         self.browser.close()
+

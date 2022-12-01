@@ -17,7 +17,7 @@ class RegistrationDeposit:
     def registration_form(self):
         """Fill registration inputs"""
         self.page.get_by_role("button", name="Registrieren").click()
-        self.page.get_by_placeholder("E-Mail").fill(random_email)  # Generate random email every time (PASS)
+        self.page.get_by_placeholder("E-Mail").fill(random_email)
         # it depends on what we choose json or list. Add append to it
         self.page.get_by_placeholder("Passwort").fill("ilimem31")
         self.page.locator(

@@ -26,10 +26,9 @@ class LoginDeposit:
 
     def choose_payment_method(self):
         """Choose payment method"""
-        self.page.locator(".paymentList__img").first.click()
-        self.page.locator("text=€ 50.00").click()
+        self.page.locator("li:nth-child(22) > .paymentList__img").click()
         with self.page.expect_popup() as popup_info:
-            self.locator('//html/body/div[1]/div/div[1]/main/div/div[2]/div[2]/form/div[2]/button').click()
+            self.page.locator("button:has-text(\"Einzahlen\")").click()
         page1 = popup_info.value
         page1.close()
 

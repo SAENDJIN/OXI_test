@@ -1,3 +1,7 @@
+import allure
+
+
+@allure.title('Registration new user and make deposit (TRON only)')
 def test_registration_to_deposit(registration_deposit_de):
     registration_deposit_de.registration_form()
     registration_deposit_de.trigger_profile_input()

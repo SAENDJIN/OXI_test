@@ -30,7 +30,7 @@ class LoginDeposit:
     @allure.step
     def choose_payment_method(self):
         """Choose payment method"""
-        self.page.locator("li:nth-child(22) > .paymentList__img").click()
+        self.page.locator("li:nth-child(18) > .paymentList__img").click()
         with self.page.expect_popup() as popup_info:
             self.page.locator("button:has-text(\"Einzahlen\")").click()
         page1 = popup_info.value

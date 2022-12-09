@@ -14,7 +14,7 @@ class RegistrationDeposit:
     @allure.step
     def __init__(self, playwright: Playwright):
         """Configure browser to start autotest"""
-        self.browser = playwright.chromium.launch(headless=False)
+        self.browser = playwright.chromium.launch(headless=False, slow_mo=500)
         self.context = self.browser.new_context()
         self.page = self.context.new_page()
         self.page.goto("https://oxicasino.io/de/")
@@ -39,6 +39,7 @@ class RegistrationDeposit:
         # self.page.get_by_role("button", name="€ 30.00").click()
         # self.page.get_by_role("button", name="Einzahlen").click()
         self.page.locator("li:nth-child(18) > .paymentList__img").click()
+        self.page.locator("button:has-text(\"Einzahlen\")").click()
 
     @allure.step
     def profile_info_fill(self):
@@ -51,11 +52,12 @@ class RegistrationDeposit:
         self.page.get_by_placeholder("Adresse").fill(random_address + " " + str(random_number_two))
         self.page.get_by_placeholder("Postleitzahl").fill(random_postal)
         self.page.get_by_label("Männlich").check()
+        self.page.locator("text=Speichern").click()
 
     @allure.step
     def deposit_to_redirect(self):
         """steps to open new window"""
-        self.page.locator("li:nth-child(22) > .paymentList__img").click()
+        self.page.locator("li:nth-child(18) > .paymentList__img").click()
         with self.page.expect_popup() as popup_info:
             self.page.locator("button:has-text(\"Einzahlen\")").click()
         page1 = popup_info.value

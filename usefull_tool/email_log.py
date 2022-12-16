@@ -1,4 +1,4 @@
-from email_generator import random_email
+from usefull_tool.email_generator import random_email
 
 
 def add_email_to_txt():

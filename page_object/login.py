@@ -1,13 +1,13 @@
 from playwright.sync_api import Playwright
 import allure
-
+from usefull_tool.datetime_screenshot import screenshot_name
 
 class LoginDeposit:
     """Test user flow login -> deposit -> open new page with any deposit method"""
 
     def __init__(self, playwright: Playwright):
         """Configure browser to start autotest"""
-        self.browser = playwright.chromium.launch(headless=False)
+        self.browser = playwright.chromium.launch(headless=False, timeout=1500)
         self.context = self.browser.new_context()
         self.page = self.context.new_page()
         self.page.goto("https://oxicasino.io/de/")
@@ -39,8 +39,15 @@ class LoginDeposit:
     @allure.step
     def check_new_window(self):
         """Assertion new window is opened"""
-        text_header_popup = self.page.locator("//html/body/div[4]/div[1]/div/div/div/div/div/h2").text_content()
-        return "Warten auf die Zahlung" in text_header_popup
+        text_header_popup = self.page.locator("text=Warten auf die Zahlung").text_content()
+        try:
+            assert "Warten auf die Zahlung" in text_header_popup
+        except AssertionError:
+            # Take a screenshot and attach it to the Allure report
+            screenshot = self.page.screenshot()
+            allure.attach(screenshot, name=screenshot_name, attachment_type=allure.attachment_type.PNG)
+            # Re-raise the AssertionError to fail the test
+            raise
 
     @allure.step
     def close(self):

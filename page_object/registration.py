@@ -15,7 +15,7 @@ class RegistrationDeposit:
     @allure.step
     def __init__(self, playwright: Playwright):
         """Configure browser to start autotest"""
-        self.browser = playwright.chromium.launch(headless=False, slow_mo=500)
+        self.browser = playwright.chromium.launch(headless=False)
         self.context = self.browser.new_context()
         self.page = self.context.new_page()
         self.page.goto("https://oxicasino.io/de/")

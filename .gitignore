@@ -2,3 +2,4 @@ report/
 /flou_test/email.txt
 /.idea/OXI_test.iml
 pytest.ini
+email.txt

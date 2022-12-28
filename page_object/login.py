@@ -2,12 +2,13 @@ from playwright.sync_api import Playwright
 import allure
 from usefull_tool.datetime_screenshot import screenshot_name
 
+
 class LoginDeposit:
     """Test user flow login -> deposit -> open new page with any deposit method"""
 
     def __init__(self, playwright: Playwright):
         """Configure browser to start autotest"""
-        self.browser = playwright.chromium.launch(headless=False, timeout=1500)
+        self.browser = playwright.chromium.launch(headless=False)
         self.context = self.browser.new_context()
         self.page = self.context.new_page()
         self.page.goto("https://oxicasino.io/de/")

@@ -1,5 +1,4 @@
 import allure
-import time
 
 
 @allure.title("Login old user and make deposit 4 times different methods")

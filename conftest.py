@@ -31,3 +31,10 @@ def login_deposit_de_four_methods(get_playwright):
     login_four_methods = LoginDepositFourMethod(get_playwright)
     yield login_four_methods
     login_four_methods.close()
+
+
+@fixture
+def registration_deposit_five_methods(get_playwright):
+    registration_five_methods = RegistrationDepositFiveMethod(get_playwright)
+    yield registration_five_methods
+    registration_five_methods.close

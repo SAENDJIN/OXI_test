@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from page_object.login import LoginDeposit
 from page_object.registration import RegistrationDeposit
 from page_object.login_four_deposit import LoginDepositFourMethod
+from page_object.registration_five_deposit import RegistrationDepositFiveMethod
 
 
 @fixture

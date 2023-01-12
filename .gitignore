@@ -3,3 +3,4 @@ report/
 /.idea/OXI_test.iml
 pytest.ini
 email.txt
+/page_object/admin_panel.py

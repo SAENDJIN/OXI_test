@@ -47,7 +47,7 @@ class LoginDepositFourMethod:
     def payment_bank_uberweisung_white(self):
         """Open new deposit window with bank_uberweisung_white and try to find element"""
 
-        self.page.locator("li:nth-child(6) > .paymentList__img").click()
+        self.page.locator("li:nth-child(5) > .paymentList__img").click()
         self.page.locator("[placeholder=\"\\30 \"]").fill("20")
         with self.page.expect_popup() as popup_info:
             self.page.locator("button:has-text(\"Einzahlen\")").click()
@@ -58,25 +58,25 @@ class LoginDepositFourMethod:
         assert "Confirm and pay 20.00 EUR" in bank_uberweisung_white
         page2.close()
 
-    @allure.step
-    def payment_visa(self):
-        """Open new deposit window with visa and try to find element"""
-        self.page.locator("li:nth-child(4) > .paymentList__img").click()
-        self.page.locator("[placeholder=\"\\30 \"]").fill("20")
-        with self.page.expect_popup() as popup_info:
-            self.page.locator("button:has-text(\"Einzahlen\")").click()
-        page3 = popup_info.value
-        visa = page3.locator(
-            "//html/body/div/div/div/div[1]/div/div[1]/dl") \
-            .text_content()
-
-        assert "Amount20 EUR" in visa
-        page3.close()
+    # @allure.step
+    # def payment_visa(self):
+    #     """Open new deposit window with visa and try to find element"""
+    #     self.page.locator("li:nth-child(4) > .paymentList__img").click()
+    #     self.page.locator("[placeholder=\"\\30 \"]").fill("20")
+    #     with self.page.expect_popup() as popup_info:
+    #         self.page.locator("button:has-text(\"Einzahlen\")").click()
+    #     page3 = popup_info.value
+    #     visa = page3.locator(
+    #         "//html/body/div/div/div/div[1]/div/div[1]/dl") \
+    #         .text_content()
+    #
+    #     assert "Amount20 EUR" in visa
+    #     page3.close()
 
     @allure.step
     def payment_mastercard_paygate(self):
         """Open new deposit window with mastercard_paygate and try to find element"""
-        self.page.locator("li:nth-child(5) > .paymentList__img").click()
+        self.page.locator("li:nth-child(4) > .paymentList__img").click()
         self.page.locator("[placeholder=\"\\30 \"]").fill("20")
         with self.page.expect_popup() as popup_info:
             self.page.locator("button:has-text(\"Einzahlen\")").click()
@@ -90,7 +90,7 @@ class LoginDepositFourMethod:
     @allure.step
     def payment_mastercard_payment_service(self):
         """Open new deposit window with mastercard_payment_service and try to find element"""
-        self.page.locator("li:nth-child(7) > .paymentList__img").click()
+        self.page.locator("li:nth-child(6) > .paymentList__img").click()
         self.page.locator("[placeholder=\"\\30 \"]").fill("20")
         with self.page.expect_popup() as popup_info:
             self.page.locator("button:has-text(\"Einzahlen\")").click()
